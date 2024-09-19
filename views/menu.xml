@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_customer_root"
+              name="New Customer"
+              web_icon="new_customer,static\description\icon.png"
+    />
+    <menuitem id="menu_customer_application" name="Create New Customer" parent="menu_customer_root" />
+    <menuitem id="menu_customer_customers" name="Customers" parent="menu_customer_application" action="action_new_customer"/>
+
+</odoo>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_new_customer" model="ir.actions.act_window">
+        <field name="name">Customer</field>
+        <field name="res_model">new.customer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Customer
+            </p>
+        </field>
+    </record>
+
+    <record id="view_new_customer" model="ir.ui.view">
+        <field name="name">New Customer View</field>
+        <field name="model">new.customer</field>
+        <field name="arch" type="xml">
+            <tree string="New Customer Tree">
+                <field name="reference" readonly="True"/>
+                <field name="full_name"/>
+                <field name="company_name"/>
+                <field name="mobile1" optional="hide"/>
+                <field name="mobile2" optional="hide"/>
+                <field name="create_date" optional="show"/>
+                <field name="create_uid" optional="show"/>
+                <field name="state" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="new_customer_form" model="ir.ui.view">
+        <field name="name">New Customer Name</field>
+        <field name="model">new.customer</field>
+        <field name="arch" type="xml">
+            <form string="New Customer Form">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" invisible="state != 'draft'"/>
+                    <button name="action_done" type="object" string="Done" invisible="state != 'confirmed'"/>
+                    <button name="action_draft" type="object" string="Reset to Draft" invisible="state != 'done'"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible = "state != 'done'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft, confirmed, done"/>
+                </header>
+                <sheet>
+                    <group name="Customer Form">
+                        <group name="main_info">
+                            <field name="reference" readonly="True"/>
+                            <field name="customer_status"/>
+                            <field name="partner_id" invisible="customer_status in ['new']"/>
+                            <field name="full_name"/>
+                            <field name="company_name"/>
+                            <field name="area"/>
+                            <field name="year_of_last_matching"/>
+                            <field name="final_name" widget="CopyClipboardChar"/>
+                            <field name="province"/>
+                            <field name="place" invisible="province != 'بغداد'"/>
+                            <field name="address"/>
+                            <field name="mobile1" widget="phone"/>
+                            <field name="mobile2" widget="phone"/>
+                            <field name="location" widget="url"/>
+                        </group>
+                        <group name="other_info">
+                            <field name="image" widget="image"/>
+                        </group>
+
+                    </group>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+<!--                    <field name="activity_ids"/>-->
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+</odoo>
