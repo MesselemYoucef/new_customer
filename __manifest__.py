@@ -4,7 +4,8 @@
     "license": "LGPL-3",
     "version": "17.0.1.0",
     "category": "Services",
-    "depends":[
+    "depends": [
+        "base",
         "mail",
     ],
     "data": [

@@ -47,7 +47,7 @@
                             <field name="reference" readonly="True"/>
                             <field name="customer_status"/>
                             <field name="partner_id" invisible="customer_status in ['new']"/>
-                            <field name="full_name"/>
+                            <field name="full_name" readonly="state != 'draft'"/>
                             <field name="company_name"/>
                             <field name="area"/>
                             <field name="year_of_last_matching"/>
